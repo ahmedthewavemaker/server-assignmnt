@@ -1,0 +1,34 @@
+const express= require('express');
+const morgan= require('morgan');
+
+const app=express();
+
+app.use(morgan('common'));
+const play=require('./playServer-data.js');
+
+app.get('/apps', (req, res)=>{
+    const {sort, genre}=req.query;
+    if(sort){
+        if(!['rating', 'app'].includes(sort)){
+            return res
+                    .status(400)
+                    .send('Sort must be of Rating or App');
+        }
+    
+    if(genre){
+        if(!['Action', 'Puzzle', 'Arcade', 'Strategy','Casual', 'Card'].includes(genre)){
+            return res
+                    .status(400)
+                    .send('Genre must be either Action, Puzzle, Arcade, Strategy, Casual, or Card');
+    
+        }
+
+
+
+res.json(play)
+})
+
+
+app.listen(8000, ()=> {
+    console.log('server listening at 8000 boiiiii')
+})
