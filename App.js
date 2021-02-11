@@ -89,7 +89,7 @@ handleSubmit(e){
             <option value="Arcade">Arcade</option>
             <option value="Card">Card</option>
           </select>
-          <button type="submit">Find App</button>
+          <button type="submit" onSubmit={e=>{this.handleSubmit(e.target.value)}>Find App</button>
           </form>
         </div>
         <div className="App_error">{this.state.error}</div>
