@@ -10,7 +10,8 @@ constructor(props){
     games: [],
     sort:'',
     genres: '',
-    error: null
+    error: null,
+
   }
 }
 
@@ -30,7 +31,7 @@ handleSubmit(e){
   e.preventDefault();
   const baseUrl='http://localhost:8000/apps';
   const params=[];
- 
+
   if(this.state.sort){
     params.push(`sort=${this.state.sort}`);
   }
@@ -72,7 +73,7 @@ handleSubmit(e){
       <div>
         <h1>Google Play Apps</h1>
         <div className="sort">
-          <form>
+          <form  onSubmit={e=>{this.handleSubmit(e.target.value)}}>
           <label htmlFor="sort">Sort:</label>
           <select id="sort" name="sort" onChange={e=>this.setSort(e.target.value)}>
             <option value="">None</option>
@@ -89,7 +90,7 @@ handleSubmit(e){
             <option value="Arcade">Arcade</option>
             <option value="Card">Card</option>
           </select>
-          <button type="submit" onSubmit={e=>{this.handleSubmit(e.target.value)}>Find App</button>
+          <button type="submit" >Find App</button>
           </form>
         </div>
         <div className="App_error">{this.state.error}</div>
